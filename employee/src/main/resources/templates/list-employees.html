@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Employees</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            margin: 20px;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        .btn-delete {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Employees</h1>
+    
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <!-- Add more columns as per your Employee entity -->
+                <th>Action</th> <!-- New column for delete action -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over the employees and display their information -->
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"></td>
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.email}"></td>
+                <!-- Add more columns as per your Employee entity -->
+                <td>
+                    <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-delete ml-2">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a href="/addEmployeeForm" class="btn btn-primary">Add Employee</a> <!-- Link/button to navigate to the add employee form -->
+    
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
